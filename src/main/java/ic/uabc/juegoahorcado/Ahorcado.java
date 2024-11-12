@@ -20,6 +20,8 @@ public class Ahorcado {
     private int puntosObjetivo;
     private BancoDeFrases bancoDeFrases;
     private int contadorRonda;
+    private Jugador jugadorPrevio = null;
+    private boolean adivinoLetra = false;
 
     public Ahorcado(List<Jugador> jugadores, int puntosObjetivo) {
         this.jugadores = jugadores;
@@ -34,6 +36,12 @@ public class Ahorcado {
         boolean rondaTerminada = false;
         while (!rondaTerminada) {
             for (Jugador jugador : jugadores) {
+                if(adivinoLetra){
+                    jugador = jugadorPrevio;
+                }else{
+                    jugadorPrevio = jugador;
+                }
+                adivinoLetra = false;
                 System.out.println("\nTurno de " + jugador.getNombre());
                 System.out.println("Puntos al momento: " + jugador.getPuntaje());
                 System.out.println("Frase: " + frase.mostrarFrase());
@@ -52,6 +60,7 @@ public class Ahorcado {
                         System.out.println("¡Adivinaste una letra! Puntos ganados: " + (3 * apariciones));
                         System.out.println("Frase: " + frase.mostrarFrase());
                         System.out.println("\nJugador " + jugador.getNombre() + ", puntos al momento: " + jugador.getPuntaje());
+                        adivinoLetra = true;
                     } else {
                         jugador.modificarPuntaje(-1);
                         System.out.println("La letra no está en la frase. (Menos -1 punto)");
