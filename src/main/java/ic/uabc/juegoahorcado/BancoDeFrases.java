@@ -33,7 +33,7 @@ public class BancoDeFrases {
         frases.put("comida3", "Ramen");
     }
 
-    // Método para obtener una frase aleatoria del banco
+    // Método para obtener una frase aleatoria del banco 
     public String obtenerFraseAleatoria() {
         Random random = new Random();
         Object[] valores = frases.values().toArray();
